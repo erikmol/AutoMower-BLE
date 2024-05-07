@@ -28,7 +28,7 @@ class Mower(BLEClient):
         """
         This is the same function as get_parameter but with a differerent name to make syntax a bit more clear.
         It also does not handle any response even though it upstream reads the response."""
-        self.get_parameter(parameter_name, **kwargs)
+        await self.get_parameter(parameter_name, **kwargs)
 
     async def get_parameter(self, parameter_name: str, **kwargs):
         """
