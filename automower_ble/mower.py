@@ -47,7 +47,7 @@ class Mower(BLEClient):
 
         response_dict = command.parse_response(response)
         if (
-            len(response_dict) == 1
+            response_dict is not None and len(response_dict) == 1
         ):  # If there is only one key in the response, return the value
             return response_dict["response"]
         else:
