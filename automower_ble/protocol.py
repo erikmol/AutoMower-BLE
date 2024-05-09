@@ -7,6 +7,7 @@ import json
 from importlib.resources import files
 from bleak import BleakClient
 from bleak.backends.characteristic import BleakGATTCharacteristic
+import datetime
 
 logger = logging.getLogger(__name__)
 
@@ -247,6 +248,7 @@ class BLEClient:
         self.address = address
         self.pin = pin
         self.MTU_SIZE = 20
+        self.last_response = None
 
         self.queue = asyncio.Queue()
 
@@ -336,6 +338,8 @@ class BLEClient:
             if self.is_connected():
                 await self.disconnect()
             return None
+
+        self.last_response = datetime.datetime.now()
 
         return response_data
 
