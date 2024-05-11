@@ -42,7 +42,9 @@ class Mower(BLEClient):
             return None
 
         if command.validate_response(response) is False:
-            logger.error("Response failed validation")
+            logger.error(f"Response failed validation for {parameter_name}")
+            logger.error(f"Request: {request}")
+            logger.error(f"Response: {response}")
             return None
 
         response_dict = command.parse_response(response)
